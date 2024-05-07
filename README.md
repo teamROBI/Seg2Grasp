@@ -17,5 +17,5 @@ Significantly, Seg2Grasp outperforms existing methods in real-world robotic expe
 ## Acknowledgements
 Our study used Detectron2 and Mask2Former.
 
-[Detectron2](https://github.com/facebookresearch/detectron2).
-[Mask2Former](https://github.com/facebookresearch/Mask2Former).
+:link: [Detectron2](https://github.com/facebookresearch/detectron2)  
+:link: [Mask2Former](https://github.com/facebookresearch/Mask2Former)  
