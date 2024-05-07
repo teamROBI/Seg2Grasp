@@ -1,0 +1,21 @@
+_BASE_: maskformer2_swin_large_IN21k_384_bs16_100ep.yaml
+INPUT:
+  MASK_FORMAT: "rle"
+  DATASET_MAPPER_NAME: "uoais_sim_mapper" # mask_former_instance
+DATASETS:
+  TRAIN: ("uoais_sim_train_amodal",)
+  TEST: ("uoais_sim_val_amodal",)
+SOLVER:
+  CHECKPOINT_PERIOD: 5000
+  IMS_PER_BATCH: 16 #1
+  BASE_LR: 0.0003 #0.0001
+  STEPS: (123750, 135000) #(44000, 48000) #0.88, 0.96
+  MAX_ITER: 140625 #50000 #(train_image_len / batch_size * epoch) -> 22500 / 32 * 100
+  WARMUP_FACTOR: 1.0
+  WARMUP_ITERS: 10
+  WEIGHT_DECAY: 0.05
+  OPTIMIZER: "ADAMW"
+MODEL:
+  WEIGHTS: "weights/swin_large_patch4_window12_384_22k.pkl"
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 1
