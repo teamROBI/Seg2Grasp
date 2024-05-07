@@ -1,7 +1,7 @@
 # Seg2Grasp: A Robust Modular Suction Grasping in Bin Picking
 - Institutes: Seoul National University
   
-![](./docs/overview.png)
+![](./docs/fig1.png)
 
 ## Abstract
 Current bin picking methods predominantly rely on end-to-end learning-based strategies to identify the optimal picking points on target objects.
@@ -11,7 +11,7 @@ These proposals, in conjunction with surface normals, assist the module in ident
 Significantly, Seg2Grasp outperforms existing methods in real-world robotic experiments, showcasing superior grasp success rates and adaptability to diverse and intricate object configurations. This underscores its practical effectiveness and potential as a versatile solution in automated picking operations.
 
 ## Method Overview
-![](./docs/method.png)
+![](./docs/fig2.png)
 
 
 ## Acknowledgements
