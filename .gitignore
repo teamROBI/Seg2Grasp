@@ -1,0 +1,44 @@
+# --- large / machine-specific stores (kept off the git tree) ---
+/data
+data/
+venvs/
+venv/
+
+# --- sibling projects to be removed after the repo is built ---
+DA-Fusion/
+
+# --- compiled extensions / build artifacts (vendored source IS tracked) ---
+*.so
+**/build/
+**/*.egg-info/
+third_party/detectron2/
+
+# --- model weights & checkpoints ---
+*.pth
+*.pt
+*.pkl
+*.ckpt
+*.onnx
+*.safetensors
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.ipynb_checkpoints/
+
+# --- outputs / scratch ---
+outputs/
+*.ply
+*.log
+
+# --- published paper PDF (IEEE copyright; reference by DOI instead) ---
+*.pdf
+
+# --- editors / os ---
+.idea/
+.vscode/
+.DS_Store

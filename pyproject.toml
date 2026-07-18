@@ -1,0 +1,47 @@
+[project]
+name = "seg2grasp"
+version = "1.0.0"
+description = "Seg2Grasp: A Robust Modular Suction Grasping in Bin Picking (IROS 2024) — segmentation + suction grasping + open-vocabulary classification."
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+license = { file = "LICENSE" }
+
+# NOTE: torch/torchvision (cu124), detectron2 (from source) and the MSDeformAttn
+# CUDA op are installed separately by scripts/setup_env.sh — they need a custom
+# index / editable install / fresh compile. Everything else is declared here.
+dependencies = [
+    "numpy<2",
+    "opencv-python>=4.9",
+    "open3d>=0.18",
+    "pillow>=10.0",
+    "scipy>=1.11",
+    "scikit-image>=0.22",
+    "matplotlib>=3.7",
+    "tqdm>=4.66",
+    "pyyaml>=6.0",
+    "imageio>=2.34",
+    # segmentation (Mask2Former / detectron2 support libs)
+    "timm>=0.9.12",
+    "shapely>=2.0",
+    "pycocotools>=2.0.7",
+    "fvcore>=0.1.5",
+    "iopath>=0.1.9",
+    "cython>=3.0",
+    # classification (Qwen VLM)
+    "transformers>=5",
+    "accelerate>=1.0",
+]
+
+[project.optional-dependencies]
+# Live robot + camera path (Azure Kinect + UR5e). Not needed for offline demo.
+robot = [
+    "pyk4a>=1.5",
+    "urx>=0.11",
+]
+
+[tool.setuptools.packages.find]
+include = ["seg2grasp*"]
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"

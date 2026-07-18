@@ -1,0 +1,29 @@
+# Product categories for the Seg2Grasp classification module (Qwen VLM).
+#
+# These mirror the coarse product categories from the paper (Fig. 5 / the
+# "mask-category" Product Image Dataset, e.g. snack / drink / dairy). Edit this
+# list for your own bin — QwenClassifier restricts its answer to these labels
+# (unless run with open_vocab=True). The optional `descriptions` give a short
+# distinguishing hint per category, which improves accuracy.
+
+categories:
+  - snack
+  - drink
+  - dairy
+  - sauce
+  - fruit
+  - vegetable
+  - cleaning
+  - toy
+  - cup
+
+descriptions:
+  snack:     "packaged snack food (chips, crackers, cookies, chocolate bars)"
+  drink:     "beverage container (bottle or can of water, soda, juice)"
+  dairy:     "dairy product (milk carton, yogurt cup, cheese)"
+  sauce:     "condiment or cooking sauce (ketchup, soy sauce, dressing bottle/pack)"
+  fruit:     "fresh or model fruit (apple, banana, orange, lemon)"
+  vegetable: "fresh or model vegetable (carrot, tomato, pepper, potato, onion, corn)"
+  cleaning:  "household cleaning product (detergent, spray bottle, soap)"
+  toy:       "toy or play object (ball, block, figure)"
+  cup:       "cup, mug, bowl, or other drinking/tableware vessel"

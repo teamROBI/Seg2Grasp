@@ -1,0 +1,40 @@
+# LEGACY DA-Fusion training config (the Mask2Former-fork "CFS" late-fusion build).
+# Defaults reproduce the best surviving RGB-D run:
+#   DI_AGF_rgbd_none_NOW0.4_BS2_LR1e-05  (OCID Overlap-F ~91.9)
+# Run from legacy/ :  cd legacy && python uoais_train_net.py --num-gpus N --config-file configs/legacy_mask2former_swin_uoais.yaml
+# _BASE_ is relative to this file (legacy/configs/), reaching the upstream Mask2Former config chain.
+_BASE_: coco/instance-segmentation/swin/maskformer2_swin_large_IN21k_384_bs16_100ep.yaml
+INPUT:
+  MASK_FORMAT: "rle"
+  DATASET_MAPPER_NAME: "uoais_sim_mapper"
+  INPUT_TYPE: "rgbd"          # rgb | depth | depth_colormap | rgbd
+  COLORMAP: "none"            # BONE | JET | PLASMA | RAINBOW | HSV | OCEAN | WINTER | AUTUMN
+  DEPTH_INVERTED: True
+  AUGMENTATION: False
+TEST:
+  EVAL_PERIOD: 0
+DATASETS:
+  TRAIN: ("uoais_sim_train_amodal",)
+  TEST: ("uoais_sim_val_amodal",)
+SOLVER:
+  CHECKPOINT_PERIOD: 500
+  IMS_PER_BATCH: 2           # best RGB-D run used batch 2 (A100-40GB; use 1-2 on 24GB 3090)
+  BASE_LR: 0.00001
+  STEPS: (19800, 21600)
+  MAX_ITER: 22500
+  WARMUP_FACTOR: 1.0
+  WARMUP_ITERS: 10
+  WEIGHT_DECAY: 0.05
+  OPTIMIZER: "ADAMW"
+MODEL:
+  WEIGHTS: "../data/checkpoints/mask2former/model_final_e5f453.pkl"   # official Mask2Former Swin-L COCO init (relative to legacy/)
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 1
+  MASK_FORMER:
+    NO_OBJECT_WEIGHT: 0.4
+    CLASS_WEIGHT: 2.0
+    MASK_WEIGHT: 5.0
+    DICE_WEIGHT: 5.0
+    FREEZE_PIXEL_DECODER: False
+    FREEZE_SELF_ATTN: False
+    FREEZE_CROSS_ATTN: False
